@@ -1,0 +1,36 @@
+name: Build and Deploy Resume
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "**.tex"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: resume.tex
+
+      - name: Prepare site files
+        run: |
+          mkdir public
+          mv resume.pdf public/
+          if [ -f index.html ]; then mv index.html public/; fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

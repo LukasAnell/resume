@@ -5,6 +5,9 @@ on:
     branches: [ main ]
     paths:
       - "**.tex"
+      - "**.html"
+      - "**.css"
+      - "**.yml"
   workflow_dispatch:
 
 permissions:

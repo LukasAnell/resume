@@ -102,6 +102,14 @@
 	\resumeItem{Feedback}
 	{Assessed students' progress and provided feedback to enhance learning.}
 	\resumeItemListEnd
+
+	\resumeSubheading
+	{\href{https://github.com/LukasAnell/CS180-TeamProject}{CS180 Team Project}}{Purdue University}
+	{Team Member (4-person team)}{Fall 2025}
+	\resumeItemListStart
+	\resumeItem{Contribution}
+	{Collaborated with a 4-person team to build a client-server movie reservation system in Java using socket-based communication. Implemented the \texttt{Reservation}, \texttt{Server}, and \texttt{User} classes and the Swing-based client GUI's booking flow.}
+	\resumeItemListEnd
 	\resumeSubHeadingListEnd
 
 
@@ -109,17 +117,13 @@
 	\section{Projects}
 	\resumeSubHeadingListStart
 	\resumeSubItem{\href{https://github.com/LukasAnell/mini-database}{mini-database} (April 2026 - Present) \textit{Creator}}
-	{A relational database engine built from scratch in Java. Supports simple data types, data persistence with CSV files, SQL-like querying, HashMap and TreeMap indexing, and transaction management. This project is being actively worked on.}
-	\resumeSubItem{\href{https://github.com/LukasAnell/chicago-traffic}{chicago-traffic} {June 2026 - Present} \textit{Creator}}
-	{A Python package that is used to fetch traffic and crash data from the City of Chicago's public data portal, which uses the Socrata SODA API. It does not perform any analysis, storage, or visualization itself.}
-	\resumeSubItem{\href{https://github.com/LukasAnell/social-network}{social-network} (May 2026 - Present) \textit{Creator} }
-	{A social network engine based an undirected graph of nodes. Supports graph persistence in a custom file format, graph traversal algorithms, and community detection.}
-	\resumeSubItem{\href{https://github.com/LukasAnell/java-http-server}{HTTP/1.1 Web Server} (May 2026 - Present) \textit{Creator} }
-	{A multithreaded, HTTP/1.1 compatible web server written in Java. Can handle basic HTTP methods, serve static files, and parses or construct HTTP messages manually.}
-	\resumeSubItem{\href{https://github.com/LukasAnell/Camera-Dynamics}{CameraDynamics Engineering Project} (August 2024 - June 2025) \textit{Co-lead and Head Programmer}}
-	{Worked in a team of 2 to build a panoramic video stitcher from scratch. Collaborated with school sports directors and students to gauge need and requirements for the project. Used Python with libraries such as OpenCV, NumPy, Tkinter, PIL, and FFmpeg.}
+	{Relational database engine built from scratch in Java supporting typed columns, CSV persistence, and SQL-like queries (SELECT/INSERT/DELETE/UPDATE with AND/OR/NOT WHERE clauses). Implemented dual indexing with a HashMap for O(1) equality lookups and a TreeMap for sorted range queries, and a snapshot-based transaction system supporting commit/rollback.}
 	\resumeSubItem{\href{https://github.com/LukasAnell/SnapTranslate}{SnapTranslate} (December 2025 - Present) \textit{Creator}}
-	{A Chrome/Edge (Manifest V3) browser extension that lets you drag-select a rectangular region of any webpage, capture it as an image, run OCR on it, and translate the detected text without leaving the page.}
+	{Chrome/Edge (Manifest V3) browser extension implementing a full capture $\to$ OCR $\to$ translate pipeline: drag-select any webpage region, extract text via Tesseract.js, and translate it through the DeepL API. Built a multi-context architecture (background service worker, content script, popup, offscreen document) with configurable OCR languages and per-user API key setup.}
+	\resumeSubItem{\href{https://github.com/LukasAnell/social-network}{social-network} (May 2026 - Present) \textit{Creator} }
+	{Social network engine modeling users as a weighted undirected graph with a custom persistence format. Implemented Dijkstra's algorithm for shortest paths, BFS/DFS traversal, mutual-friend-based friend suggestions, and community detection via connected components and label propagation.}
+	\resumeSubItem{\href{https://github.com/LukasAnell/java-http-server}{HTTP/1.1 Web Server} (May 2026 - Present) \textit{Creator} }
+	{Multithreaded HTTP/1.1 server built from raw sockets in Java with manual HTTP message parsing/construction. Implemented request routing (distinguishing 404 vs.\ 405), MIME-type-aware static file serving, and concurrent connection handling via a thread pool. In active development.}
 	\resumeSubHeadingListEnd
 
 
@@ -127,10 +131,13 @@
 	\section{Skills}
 	\resumeSubHeadingListStart
 	\item{
-		\textbf{Proficient}{: Java, Python, Kotlin, Data Structures and Algorithms, Debugging, OOP, Documentation}
+		\textbf{Languages}{: Java, Python, Kotlin, C++, HTML/CSS, JavaScript/TypeScript}
 	}
 	\item{
-		\textbf{Comfortable}{: C++, HTML/CSS, JavaScript/TypeScript, UI/UX}
+		\textbf{Software Engineering}{: Data Structures \& Algorithms, OOP, Git, Debugging, REST/HTTP, Socket Programming, Chrome Extension APIs}
+	}
+	\item{
+		\textbf{Data Science}{: Python (pandas, NumPy, Matplotlib, scikit-learn, seaborn), R, SQL, Jupyter}
 	}
 	\resumeSubHeadingListEnd
 

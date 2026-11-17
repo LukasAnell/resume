@@ -1,57 +1,65 @@
 name: Build and Deploy Resume
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - "**.tex"
-      - "**.html"
-      - "**.css"
-      - "**.yml"
-  workflow_dispatch:
+    push:
+        branches: [main]
+        paths:
+            - "**.tex"
+            - "**.html"
+            - "**.css"
+            - "**.yml"
+    workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+    contents: read
+    pages: write
+    id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    group: "pages"
+    cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Install LaTeX
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: resume.tex
+            - name: Install LaTeX
+              uses: xu-cheng/latex-action@v3
+              with:
+                  root_file: resume.tex
 
-      - name: Prepare site files
-        run: |
-          mkdir public
-          cp resume.pdf public/resume.pdf
-          mv resume.pdf public/Lukas_Anell_Resume.pdf
-          if [ -f index.html ]; then mv index.html public/; fi
-          if [ -f styles.css ]; then mv styles.css public/; fi
-          if [ -f CNAME ]; then mv CNAME public/; fi
+            - name: Check the resume is exactly one page
+              run: |
+                  if ! grep -q -E 'Output written on resume\.pdf \(1 page,' resume.log; then
+                    echo "::error::resume.pdf is not exactly 1 page (or resume.log is missing)"
+                    grep 'Output written on' resume.log || echo "No page count found in resume.log"
+                    exit 1
+                  fi
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
+            - name: Prepare site files
+              run: |
+                  mkdir public
+                  cp resume.pdf public/resume.pdf
+                  mv resume.pdf public/Lukas_Anell_Resume.pdf
+                  if [ -f index.html ]; then mv index.html public/; fi
+                  if [ -f styles.css ]; then mv styles.css public/; fi
+                  if [ -f CNAME ]; then mv CNAME public/; fi
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: ./public
+
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4

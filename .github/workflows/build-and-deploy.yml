@@ -34,7 +34,8 @@ jobs:
       - name: Prepare site files
         run: |
           mkdir public
-          mv resume.pdf public/
+          cp resume.pdf public/resume.pdf
+          mv resume.pdf public/Lukas_Anell_Resume.pdf
           if [ -f index.html ]; then mv index.html public/; fi
           if [ -f styles.css ]; then mv styles.css public/; fi
           if [ -f CNAME ]; then mv CNAME public/; fi
